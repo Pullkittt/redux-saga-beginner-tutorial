@@ -1,0 +1,34 @@
+FUNCTIONALITY -- 
+
+
+create a button to check n perform an action in Counter.js file, butto will invoke a function
+Eg >>  <button onClick={onIncrement}>
+          Increment
+        </button>
+
+
+In main.js file passing that invoked function as a prop, triggering an action 
+Eg >> onIncrement={() => action('INCREMENT')}
+
+
+In saga.js file, 
+    create a watcher saga function which will listen for the triggering
+            Eg - export function* watchTakinLatest(){
+            yield takeLatest('TAKING_LATEST', takinLat)
+                                            }
+
+    and on triggering, calls the function w.r.t the action triggered
+            Eg- export function* takinLat(){
+                 yield delay(2000)
+               yield put({type: 'INCREMENT'}) 
+                }
+
+
+              Here, put is dispatching an action who's type is INCREMENT to the redux store  
+              and In reducer file, it's incrementing state value by 1  and reutring this updated state value
+
+              and this updated value is being rendered on screen via <Counter
+      value={store.getState()}
+
+       Flow -         UI(button click) 
+       >> calls a function which in turn triggers an action >> saga >> reducer >> updates the state and returns 
